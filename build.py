@@ -87,6 +87,36 @@ SERVICES = [
     ("tradeshow-displays",              "Tradeshow Displays"),
 ]
 
+# Brand partners we're licensed to carry (shown on the home page brand wall).
+LICENSED_BRANDS = [
+    "adidas", "Brookstone", "Calvin Klein", "Champion", "Dickies", "DI",
+    "Eddie Bauer", "Flexfit", "Gildan", "Hirsch", "Hurley", "IZOD",
+    "Nike", "Oakley", "SanMar", "SPY+", "Titleist", "Van Heusen",
+    "Zippo",
+]
+
+def brand_wall_html() -> str:
+    tiles = ''.join(
+        f'          <span class="brand-wall__mark" data-reveal>{name}</span>\n'
+        for name in LICENSED_BRANDS
+    )
+    return dedent("""\
+        <section class="brand-wall section">
+          <div class="container">
+            <div class="section__head brand-wall__head">
+              <div class="section__eyebrow" data-reveal>
+                <span class="brand-wall__badge" aria-hidden="true">&#10003;</span>
+                Licensed to <em>carry</em>
+              </div>
+              <p class="brand-wall__lede" data-reveal>Authorized to source and decorate the brands teams actually ask for by name.</p>
+            </div>
+            <div class="brand-wall__grid">
+    """) + tiles + dedent("""\
+            </div>
+          </div>
+        </section>
+    """)
+
 # ---------------------------------------------------------------------------
 # Templates
 # ---------------------------------------------------------------------------
@@ -350,6 +380,7 @@ HOME_BODY = dedent("""\
         </div>
       </div>
     </section>
+""") + brand_wall_html() + dedent("""\
 
     <section class="feature section">
       <div class="container feature__grid">
