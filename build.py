@@ -59,8 +59,36 @@ ADDRESS_HTML     = (
 SHOP_URL         = "https://shop.idyourself.com/"
 PRODUCTS_URL     = "https://products.idyourself.com/"
 SOCIAL_FACEBOOK  = "https://www.facebook.com/idyourself"
+SOCIAL_INSTAGRAM = "https://www.instagram.com/idyourself/"
 SOCIAL_LINKEDIN  = "https://www.linkedin.com/company/identify-yourself-llc"
-SOCIAL_PINTEREST = "https://www.pinterest.com/idyourself"
+
+ICON_FACEBOOK = (
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+    '<path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.6 1.7-1.6h1.6V4.2c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.6H7.7V14h2.7v8h3.1z"/>'
+    '</svg>'
+)
+ICON_INSTAGRAM = (
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    '<rect x="3" y="3" width="18" height="18" rx="5"/>'
+    '<circle cx="12" cy="12" r="4"/>'
+    '<circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>'
+    '</svg>'
+)
+ICON_LINKEDIN = (
+    '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+    '<path d="M6.94 6.5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.4 9h3.2v11H3.4V9zm5.4 0H12v1.6h.05c.44-.84 1.52-1.72 3.13-1.72 3.35 0 3.97 2.2 3.97 5.06V20h-3.2v-5.1c0-1.21-.02-2.77-1.69-2.77-1.69 0-1.95 1.32-1.95 2.68V20H8.8V9z"/>'
+    '</svg>'
+)
+
+def social_icons_html(kind: str = "footer") -> str:
+    """kind is just used as a class hint so contact page and footer can style differently if needed."""
+    return (
+        f'<div class="socials socials--{kind}">'
+        f'<a class="socials__btn" href="{SOCIAL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook">{ICON_FACEBOOK}</a>'
+        f'<a class="socials__btn" href="{SOCIAL_INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram">{ICON_INSTAGRAM}</a>'
+        f'<a class="socials__btn" href="{SOCIAL_LINKEDIN}" target="_blank" rel="noopener" aria-label="LinkedIn">{ICON_LINKEDIN}</a>'
+        f'</div>'
+    )
 
 # ---------------------------------------------------------------------------
 # Navigation definition (matches the real idyourself.com top menu)
@@ -190,11 +218,7 @@ def footer_html() -> str:
             <a href="tel:{PHONE_LOCAL_TEL}">{PHONE_LOCAL} <small>(local)</small></a>
             <p style="color:var(--text-dim);font-size:.85rem;">Fax {FAX_DISPLAY}</p>
             <p>{ADDRESS_HTML}</p>
-            <p style="margin-top:.75rem;">
-              <a href="{SOCIAL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook">FB</a> &middot;
-              <a href="{SOCIAL_LINKEDIN}" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a> &middot;
-              <a href="{SOCIAL_PINTEREST}" target="_blank" rel="noopener" aria-label="Pinterest">PIN</a>
-            </p>
+            {social_icons_html("footer")}
           </div>
         </div>
         <div class="container footer__bar">
@@ -711,11 +735,7 @@ CONTACT_BODY = page_hero(
           </div>
           <div class="block">
             <h3>Follow</h3>
-            <p>
-              <a href="{SOCIAL_FACEBOOK}" target="_blank" rel="noopener">Facebook</a> &middot;
-              <a href="{SOCIAL_LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a> &middot;
-              <a href="{SOCIAL_PINTEREST}" target="_blank" rel="noopener">Pinterest</a>
-            </p>
+            {social_icons_html("contact")}
           </div>
         </aside>
       </section>

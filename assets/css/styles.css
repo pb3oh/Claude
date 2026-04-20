@@ -920,3 +920,32 @@ form.quote-form .submit small{ color: var(--text-dim); font-size:.8rem; }
   color: #fff;
   background: rgba(232,71,43,.08);
 }
+
+/* Social icon buttons (footer + contact sidebar) */
+.socials{
+  display: inline-flex;
+  gap: 10px;
+  margin-top: .75rem;
+}
+.socials__btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255,255,255,.55);
+  color: #fff;
+  text-decoration: none;
+  transition: border-color .15s ease, background .15s ease, color .15s ease, transform .15s ease;
+}
+.socials__btn:hover{
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.socials__btn svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
