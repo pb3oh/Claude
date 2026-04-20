@@ -114,7 +114,7 @@ def header_html(current_key: str) -> str:
           </a>
           {nav_html(current_key)}
           <div class="nav__cta">
-            <a class="btn btn--accent" href="/pay-online/">Pay Online</a>
+            <a class="btn btn--accent" href="{PRODUCTS_URL}" target="_blank" rel="noopener">Pay Online</a>
             <a class="btn btn--solid" href="/contact-us/#quote">Get started <span aria-hidden="true">&rarr;</span></a>
           </div>
           <button class="nav__burger" aria-label="Open menu" data-burger><span></span><span></span><span></span></button>
