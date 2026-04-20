@@ -29,6 +29,19 @@ from textwrap import dedent
 
 ROOT = Path(__file__).resolve().parent
 
+# Base URL path the site is served from.
+# GitHub Pages project site: "/Claude"
+# Root domain (e.g. idyourself.com): ""
+BASE = "/Claude"
+
+def u(path: str) -> str:
+    """Prefix a site-absolute path with BASE. Pass-through for external URLs and anchors."""
+    if path.startswith(('http://', 'https://', 'mailto:', 'tel:', '#')):
+        return path
+    if not path.startswith('/'):
+        return path
+    return BASE + path if BASE else path
+
 # ---------------------------------------------------------------------------
 # Company data
 # ---------------------------------------------------------------------------
@@ -169,6 +182,15 @@ TAIL_TPL = dedent("""\
     </html>
 """)
 
+def _apply_base(html: str) -> str:
+    if not BASE:
+        return html
+    return (
+        html
+        .replace('href="/', f'href="{BASE}/')
+        .replace('src="/', f'src="{BASE}/')
+    )
+
 def render(path: str, title: str, desc: str, current: str, body: str) -> None:
     """Write a single page to disk at `path` (directory). The page becomes {path}/index.html."""
     html = (
@@ -180,6 +202,7 @@ def render(path: str, title: str, desc: str, current: str, body: str) -> None:
         footer_html() +
         TAIL_TPL
     )
+    html = _apply_base(html)
     p = ROOT / path.strip('/')
     p.mkdir(parents=True, exist_ok=True)
     (p / 'index.html').write_text(html, encoding='utf-8')
@@ -196,6 +219,7 @@ def render_root(title: str, desc: str, current: str, body: str) -> None:
         footer_html() +
         TAIL_TPL
     )
+    html = _apply_base(html)
     (ROOT / 'index.html').write_text(html, encoding='utf-8')
     print('wrote /index.html')
 
