@@ -45,15 +45,22 @@ def u(path: str) -> str:
 # ---------------------------------------------------------------------------
 # Company data
 # ---------------------------------------------------------------------------
-PHONE_DISPLAY = "877-303-1049"
-PHONE_TEL     = "+18773031049"
-EMAIL         = "info@idyourself.com"
-ADDRESS_HTML  = (
+PHONE_DISPLAY    = "877-303-1049"
+PHONE_TEL        = "+18773031049"
+PHONE_LOCAL      = "252-480-1433"
+PHONE_LOCAL_TEL  = "+12524801433"
+FAX_DISPLAY      = "252-261-4082"
+EMAIL            = "info@idyourself.com"
+ADDRESS_HTML     = (
     "PO Box 432<br/>"
     "6146 N Croatan Hwy<br/>"
     "Kitty Hawk, NC 27949"
 )
-SHOP_URL      = "https://shop.idyourself.com/"
+SHOP_URL         = "https://shop.idyourself.com/"
+PRODUCTS_URL     = "https://products.idyourself.com/"
+SOCIAL_FACEBOOK  = "https://www.facebook.com/idyourself"
+SOCIAL_LINKEDIN  = "https://www.linkedin.com/company/identify-yourself-llc"
+SOCIAL_PINTEREST = "https://www.pinterest.com/idyourself"
 
 # ---------------------------------------------------------------------------
 # Navigation definition (matches the real idyourself.com top menu)
@@ -76,6 +83,8 @@ SERVICES = [
     ("creative-services",               "Creative Services"),
     ("large-format-printing",           "Large Format Printing"),
     ("print-collateral-and-packaging",  "Print Collateral &amp; Packaging"),
+    ("awards-and-recognition",          "Awards &amp; Recognition"),
+    ("tradeshow-displays",              "Tradeshow Displays"),
 ]
 
 # ---------------------------------------------------------------------------
@@ -147,14 +156,20 @@ def footer_html() -> str:
           <div class="footer__col footer__col--contact">
             <h4>Contact</h4>
             <a href="mailto:{EMAIL}">{EMAIL}</a>
-            <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a>
+            <a href="tel:{PHONE_TEL}">{PHONE_DISPLAY} <small>(toll-free)</small></a>
+            <a href="tel:{PHONE_LOCAL_TEL}">{PHONE_LOCAL} <small>(local)</small></a>
+            <p style="color:var(--text-dim);font-size:.85rem;">Fax {FAX_DISPLAY}</p>
             <p>{ADDRESS_HTML}</p>
-            <p>Mon &ndash; Fri &middot; 8:30a &ndash; 5p ET</p>
+            <p style="margin-top:.75rem;">
+              <a href="{SOCIAL_FACEBOOK}" target="_blank" rel="noopener" aria-label="Facebook">FB</a> &middot;
+              <a href="{SOCIAL_LINKEDIN}" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a> &middot;
+              <a href="{SOCIAL_PINTEREST}" target="_blank" rel="noopener" aria-label="Pinterest">PIN</a>
+            </p>
           </div>
         </div>
         <div class="container footer__bar">
           <span>&copy; <span data-year></span> Identify Yourself, LLC &middot; All rights reserved</span>
-          <span><a href="/policies/">Policies</a> &middot; <a href="/contact-us/">Contact</a></span>
+          <span><a href="/policies/">Policies</a> &middot; <a href="/contact-us/">Contact</a> &middot; <a href="{PRODUCTS_URL}" target="_blank" rel="noopener">Products &#8599;</a></span>
         </div>
       </footer>
     """)
@@ -291,7 +306,7 @@ HOME_BODY = dedent("""\
           <span class="line"><b>id</b>entify</span>
           <span class="line">yourself<span class="accent-dot">.</span></span>
         </h1>
-        <p class="lede" data-reveal>Custom apparel, company merch, creative + print &mdash; sourced, designed and delivered from our Outer Banks studio since 2003.</p>
+        <p class="lede" data-reveal>We&rsquo;re not checking your fingerprints or running background checks &mdash; we&rsquo;re your partner in <em>cracking the case</em> of brand identity. Creative full-service promotional products, apparel and marketing since 2003.</p>
         <div class="hero__cta" data-reveal>
           <a href="/contact-us/#quote" class="btn btn--accent btn--lg">Start a project</a>
           <a href="/services/" class="btn btn--link">See what we do <span aria-hidden="true">&rarr;</span></a>
@@ -370,20 +385,20 @@ HOME_BODY = dedent("""\
 # ---------------------------------------------------------------------------
 ABOUT_BODY = page_hero(
     "About",
-    "Branded. Marketing.<br/><em>Solutions.</em>",
-    "Identify Yourself is a family-owned, full-service branded merchandise company based on the Outer Banks of North Carolina. Since 2003 we&rsquo;ve been helping teams show up in the world with work that looks like them."
+    "We take big ideas<br/>and get them <em>off the ground</em>.",
+    "Born in 2003 from an expertise in building brands, offering unique, quality promotional products, excellent service and customer-focused marketing &mdash; all from our office in Kitty Hawk, NC."
 ) + dedent("""\
     <div class="container">
       <section class="about-grid">
         <div data-reveal>
-          <h2 class="h-display">Small shop. <em>Big</em> shop floor.</h2>
-          <p>We started Identify Yourself with a simple idea: branded merch deserves the same craft and care as the campaign it supports. Two decades later we&rsquo;re still proving it &mdash; one tee, one mug, one kitted welcome box at a time.</p>
-          <p>Our clients range from local Outer Banks favorites to national brands running coast-to-coast employee programs. What they share is a preference for direct quotes, real samples and a partner who picks up the phone.</p>
+          <h2 class="h-display">Family owned. <em>Outer Banks</em> based.</h2>
+          <p>We&rsquo;re a family owned and operated full-service promotional branding and marketing agency. We understand the challenges of getting brands to stand out &mdash; and we love solving them.</p>
+          <p>Our team takes a thoughtful full-picture look at your business to determine which products, vendors and design do justice for your brand. No throwaway suggestions, no mystery markups.</p>
         </div>
         <div data-reveal>
-          <h2 class="h-display" style="color: var(--cream);">Full-service means <span class="accent">full</span>-service.</h2>
-          <p>Sourcing, design, decoration, warehousing, kitting, fulfillment &mdash; it all lives under one roof. That means no finger-pointing, no surprise handoffs, and no &ldquo;let me loop in my vendor&rdquo; emails.</p>
-          <p>Need a company store? Built in-house. Need a 50-SKU swag closet shipped on demand? Running already. Need a large-format banner for tomorrow&rsquo;s grand opening? Press is warm.</p>
+          <h2 class="h-display" style="color: var(--cream);">Cracking the <span class="accent">case</span> of brand identity.</h2>
+          <p>Promotional products, custom apparel, creative services, print, packaging, online stores, warehousing, kitting &mdash; every branded touchpoint under one roof.</p>
+          <p>We showcase your business with creative promotional merchandise that gets people talking, remembering and connecting with your brand.</p>
         </div>
       </section>
     </div>
@@ -420,25 +435,25 @@ ABOUT_BODY = page_hero(
 # ---------------------------------------------------------------------------
 TEAM_BODY = page_hero(
     "Meet the Crew",
-    "The people<br/>behind the <em>press</em>.",
-    "A small, senior team of sourcing, design, production and fulfillment pros &mdash; all under one roof in Kitty Hawk, NC."
+    "A vibrant group of<br/><em>marketing-minded</em> folks.",
+    "Our crew comes from a variety of sales and advertising backgrounds &mdash; each one adds their own unique perspective and talent into every project and order."
 ) + dedent("""\
     <div class="container">
-      <section class="values" style="margin-top:2rem;">
-        <div class="value" data-reveal>
-          <div class="num">&mdash;</div>
-          <h3>Leadership</h3>
-          <p>Second-generation ownership. Still answering the phones, still walking the shop floor every day.</p>
+      <section class="about-grid">
+        <div data-reveal>
+          <h2 class="h-display">Headquartered on the <em>Outer Banks</em>.</h2>
+          <p>From our office in Kitty Hawk, NC, we support brands across the country. Small enough that you know who&rsquo;s working on your order, seasoned enough to run programs at scale.</p>
+          <p>Full team roster, headshots and bios coming to this page soon. In the meantime, we&rsquo;d love to introduce ourselves in person &mdash; give us a call.</p>
         </div>
-        <div class="value" data-reveal>
-          <div class="num">&mdash;</div>
-          <h3>Account + Project</h3>
-          <p>Your day-to-day partners. Senior enough to make the call, hands-on enough to catch the detail.</p>
-        </div>
-        <div class="value" data-reveal>
-          <div class="num">&mdash;</div>
-          <h3>Creative + Production</h3>
-          <p>In-house designers, decorators and fulfillment techs. If we touch it, we own it.</p>
+        <div data-reveal>
+          <h2 class="h-display" style="color: var(--cream);">What you can <span class="accent">expect</span> from us.</h2>
+          <ul class="list">
+            <li>Marketing-minded thinking on every project, not just order-taking</li>
+            <li>Cross-functional perspective from sales, advertising and production backgrounds</li>
+            <li>One senior partner from brief through shipment</li>
+            <li>Direct, plain-spoken communication &mdash; no promo-industry jargon</li>
+          </ul>
+          <p style="margin-top:1.25rem;"><a class="btn btn--solid" href="/contact-us/#quote">Meet us on a call <span aria-hidden="true">&rarr;</span></a></p>
         </div>
       </section>
     </div>
@@ -487,22 +502,27 @@ CAREERS_BODY = page_hero(
 # ---------------------------------------------------------------------------
 POLICIES_BODY = page_hero(
     "Policies",
-    "Plain-English<br/><em>policies</em>.",
-    "Terms, privacy, returns and ordering expectations &mdash; all in one place."
+    "Order &amp; shipping<br/><em>information</em>.",
+    "Everything you need to know about production timing, artwork requirements, cancellations and returns. No surprises."
 ) + dedent("""\
     <div class="container">
       <section class="about-grid">
         <div data-reveal>
-          <h2 class="h-display">Ordering &amp; quotes</h2>
-          <p>Every project starts with a written quote. Prices include decoration, setup and standard ground freight unless noted. Artwork proofs are required before production begins.</p>
-          <h2 class="h-display" style="margin-top:2rem;">Turnaround</h2>
-          <p>Standard turnaround is 10&ndash;14 business days after proof approval. Rush available on most projects &mdash; just ask.</p>
+          <h2 class="h-display">Production time</h2>
+          <p>Standard production time is <strong>10 working days plus shipping time</strong> after art approval. Rush production is available on many items with additional charges applied.</p>
+          <h2 class="h-display" style="margin-top:2rem;">Artwork</h2>
+          <p>Black and white camera-ready artwork in <strong>PDF or EPS format with 300 dpi resolution or higher</strong> is required. Art charges will apply for cleaning up art, typesetting or creating new art.</p>
+          <h2 class="h-display" style="margin-top:2rem;">Pricing</h2>
+          <p>Pricing does not include shipping, proofs, or any artwork charges unless otherwise indicated. Written quotes are binding within their stated validity window.</p>
         </div>
         <div data-reveal>
-          <h2 class="h-display" style="color: var(--cream);">Returns &amp; <span class="accent">remakes</span></h2>
-          <p>Custom-decorated goods are not resalable, so we don&rsquo;t accept returns for buyer&rsquo;s remorse. If we made a mistake &mdash; wrong art, wrong color, defective goods &mdash; we remake it, full stop.</p>
-          <h2 class="h-display" style="margin-top:2rem;">Privacy</h2>
-          <p>We only collect the information needed to quote, produce and ship your order. We don&rsquo;t sell data. We don&rsquo;t share client lists.</p>
+          <h2 class="h-display" style="color: var(--cream);">Cancellations &amp; <span class="accent">returns</span></h2>
+          <p><strong>Once an approved proof is received, there may be no cancellations on custom orders.</strong></p>
+          <p>All custom orders are final sale, with no returns or exchanges without authorization on damaged or mis-shipped merchandise only.</p>
+          <h2 class="h-display" style="margin-top:2rem;">Damaged or mis-shipped</h2>
+          <p>If something arrives damaged or isn&rsquo;t what you ordered, reach out within 7 days and we&rsquo;ll make it right &mdash; remake, replace or refund.</p>
+          <h2 class="h-display" style="margin-top:2rem;">Questions</h2>
+          <p>When in doubt, call us. We&rsquo;d rather catch an issue up front than apologize for one later.</p>
         </div>
       </section>
     </div>
@@ -515,12 +535,36 @@ POLICIES_BODY = page_hero(
 # BLOG
 # ---------------------------------------------------------------------------
 BLOG_POSTS = [
-    ("Merch that actually gets worn", "A field guide to picking garments people keep in the rotation."),
-    ("Building a company store that scales", "Lessons from running 80+ programs &mdash; and what we&rsquo;d tell a first-timer."),
-    ("Kitting, done right", "Why the unboxing matters as much as the swag inside."),
-    ("Print isn&rsquo;t dead &mdash; it&rsquo;s just better", "Paper stocks, finishes and the small touches that elevate collateral."),
-    ("Sustainable sourcing, without the greenwash", "What to ask your promo partner before you order anything &lsquo;eco.&rsquo;"),
-    ("Large format, done fast", "How we turn tradeshow banners in 48 hours (and when you shouldn&rsquo;t)."),
+    (
+        "Parade Preparedness: Branded Swag &amp; Promotional Products for Parades",
+        "While your float will leave a temporary visual, your group can really leave a lasting impression through custom branded promotional products that are memorable, useful, and don&rsquo;t have to be much more expensive than the usual candy.",
+        "https://idyourself.com/blog/parade-preparedness-parade-promotional-products-branded-swag/",
+    ),
+    (
+        "The Perceived Value of Promotional Products",
+        "The power of promotional products is strong and the perceived value by your clients is there and the actual value on your bottom line is amazing. In the promo world, a company can spend less and get more.",
+        "https://idyourself.com/blog/the-perceived-value-of-promotional-products/",
+    ),
+    (
+        "Merch that actually gets worn",
+        "A field guide to picking garments people keep in the rotation &mdash; fit, weight, hand-feel, decoration.",
+        "/contact-us/",
+    ),
+    (
+        "Building a company store that scales",
+        "Lessons from years of running branded online stores &mdash; and what we&rsquo;d tell a first-timer.",
+        "/services/online-stores/",
+    ),
+    (
+        "Kitting, done right",
+        "Why the unboxing matters as much as the swag inside &mdash; and how we build welcome kits that earn photos.",
+        "/services/warehousing-and-custom-kitting/",
+    ),
+    (
+        "Large format, done fast",
+        "Banners, backdrops and pop-ups for events that materialized on short notice. Print turnarounds that don&rsquo;t cut corners.",
+        "/services/large-format-printing/",
+    ),
 ]
 
 BLOG_BODY = page_hero(
@@ -532,13 +576,15 @@ BLOG_BODY = page_hero(
       <div class="container">
         <div class="blog-grid">
 """) + ''.join(
-    f'          <article class="blog-card" data-reveal>\n'
-    f'            <div class="blog-card__chip">Journal</div>\n'
-    f'            <h3>{title}</h3>\n'
-    f'            <p>{excerpt}</p>\n'
-    f'            <a href="/contact-us/" class="blog-card__link">Ask about this <span aria-hidden="true">&rarr;</span></a>\n'
-    f'          </article>\n'
-    for title, excerpt in BLOG_POSTS
+    (lambda title, excerpt, href, tgt: (
+        f'          <article class="blog-card" data-reveal>\n'
+        f'            <div class="blog-card__chip">Journal</div>\n'
+        f'            <h3>{title}</h3>\n'
+        f'            <p>{excerpt}</p>\n'
+        f'            <a href="{href}" class="blog-card__link"{tgt}>Read more <span aria-hidden="true">&rarr;</span></a>\n'
+        f'          </article>\n'
+    ))(title, excerpt, href, ' target="_blank" rel="noopener"' if href.startswith('http') else '')
+    for title, excerpt, href in BLOG_POSTS
 ) + dedent("""\
         </div>
       </div>
@@ -619,8 +665,9 @@ CONTACT_BODY = page_hero(
           <div class="block">
             <h3>General</h3>
             <p><a href="mailto:{EMAIL}">{EMAIL}</a></p>
-            <p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p>
-            <p>Mon &ndash; Fri &middot; 8:30a &ndash; 5p ET</p>
+            <p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a> <small>(toll-free)</small></p>
+            <p><a href="tel:{PHONE_LOCAL_TEL}">{PHONE_LOCAL}</a> <small>(local)</small></p>
+            <p><small>Fax {FAX_DISPLAY}</small></p>
           </div>
           <div class="block">
             <h3>Studio</h3>
@@ -629,11 +676,15 @@ CONTACT_BODY = page_hero(
           <div class="block">
             <h3>Shop online</h3>
             <p><a href="{SHOP_URL}" target="_blank" rel="noopener">shop.idyourself.com &#8599;</a></p>
-            <p>Stock Outer Banks gear, ready to ship.</p>
+            <p><a href="{PRODUCTS_URL}" target="_blank" rel="noopener">products.idyourself.com &#8599;</a></p>
           </div>
           <div class="block">
-            <h3>Pay an invoice</h3>
-            <p><a href="/pay-online/">Pay online &rarr;</a></p>
+            <h3>Follow</h3>
+            <p>
+              <a href="{SOCIAL_FACEBOOK}" target="_blank" rel="noopener">Facebook</a> &middot;
+              <a href="{SOCIAL_LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a> &middot;
+              <a href="{SOCIAL_PINTEREST}" target="_blank" rel="noopener">Pinterest</a>
+            </p>
           </div>
         </aside>
       </section>
@@ -714,121 +765,152 @@ SERVICE_CONTENT = {
     "custom-apparel": {
         "title": "Custom Apparel",
         "eyebrow": "Custom Apparel",
-        "headline": "Tees, hoodies,<br/>hats &mdash; <em>elevated</em>.",
-        "lede": "Screen print, embroidery, DTG, patches, heat transfer &mdash; we match the decoration to the garment, not the other way around.",
-        "what": "From a single run of team tees to a full seasonal apparel program, we source the right blank, decorate it in-house, and ship it sized and packed the way you need.",
-        "how": "We start with fit and feel &mdash; the garment has to be something people want to wear. Then we spec the decoration: screen print for punchy color, embroidery for logos that last, DTG for complex art in small runs.",
+        "headline": "Apparel for <em>employees</em><br/>&amp; customers alike.",
+        "lede": "Designing custom apparel for employees or merchandise for customers &mdash; with industry leading printing and embroidery options.",
+        "what": "Whether you&rsquo;re outfitting a team in branded uniforms or building a merchandise line that customers actually want to wear, we handle the full process in-house: source the garment, prep the art, decorate, and ship.",
+        "how": "We start with what the piece needs to do &mdash; uniform, giveaway, retail merch &mdash; and match the garment and decoration to the job. Proofs before production, always.",
         "bullets": [
-            "Screen printing &mdash; plastisol, water-based, discharge",
-            "Embroidery &mdash; flat, 3D puff, appliqu&eacute;, patches",
-            "DTG + DTF for short runs and photo-real art",
-            "Soft-hand heat transfers and numbered athleticwear",
-            "Premium brands: Comfort Colors, Champion, Carhartt, District, Bella+Canvas &mdash; plus mills on request",
+            "Screen printing for punchy, high-impact color",
+            "Embroidery for logos that wear and wash well",
+            "Employee uniform programs with reorder options",
+            "Customer-facing merchandise apparel",
+            "Industry leading print and decoration options",
         ],
     },
     "company-merch": {
         "title": "Company Merch",
         "eyebrow": "Company Merch",
-        "headline": "Merch that <em>earns</em><br/>its place in the drawer.",
-        "lede": "Thoughtful, on-brand swag that people actually keep. Drinkware, tech, bags, office, headwear &mdash; curated and custom-sourced.",
+        "headline": "Merch people are<br/><em>excited</em> to receive.",
+        "lede": "High quality bags, pens, tech gifts, and other promotional items that people are excited to receive and use &mdash; with thousands of selections to choose from.",
         "what": "We curate merch programs for employee onboarding, events, customer gifting and everyday brand presence. Every item is sourced with the logo, the audience and the use case in mind.",
-        "how": "Tell us the brief &mdash; we come back with a tight short list of options, real samples on request, and one quote that includes decoration and freight. No mystery SKUs.",
+        "how": "Tell us the brief &mdash; we come back with a tight short list, real samples on request, and one quote that includes decoration and freight. No mystery SKUs.",
         "bullets": [
-            "Drinkware, bags, tech, office, outdoor, headwear",
-            "Sustainable and recycled options on request",
+            "Bags, pens, drinkware and tech gifts",
+            "1000s of selections across every category",
+            "Thoughtful, brand-right product curation",
             "In-house decoration &mdash; laser, pad print, screen, embroidery",
             "Kitting + branded packaging available",
-            "Nationwide shipping, same day for rush",
         ],
     },
     "incentives-and-gifts": {
         "title": "Incentives & Gifts",
         "eyebrow": "Incentives &amp; Gifts",
-        "headline": "Gifts that say<br/><em>thank you</em>, loud and clear.",
-        "lede": "Client gifts, employee milestones, VIP sends &mdash; custom curated, beautifully packaged, delivered on the day you want.",
-        "what": "From a single executive gift to a 2,000-person sales incentive program, we design the experience end-to-end &mdash; product, packaging, note card, delivery window.",
-        "how": "Budget, audience, occasion, tone. Give us those and we&rsquo;ll come back with tiered options. Approve, we build, we ship.",
+        "headline": "Loyalty programs<br/>&amp; <em>corporate gifts</em>.",
+        "lede": "Create incentive and gift programs for customers and sponsors to show appreciation and keep your business fresh on their minds.",
+        "what": "From a single executive gift to a multi-tier sales incentive program, we design the full experience &mdash; product, packaging, note, delivery window &mdash; so the thank-you actually lands.",
+        "how": "Give us the budget, audience and occasion. We come back with tiered options. Approve, we build, we ship.",
         "bullets": [
-            "Tiered gift programs (bronze/silver/gold)",
-            "Custom boxes, branded wrap, handwritten-style notes",
-            "On-demand sends for new hires, closed deals, anniversaries",
-            "Gift card fulfillment, denomination-matched",
-            "Global shipping for distributed teams",
+            "Customer incentive &amp; loyalty programs",
+            "Sponsor gifts and partnership thank-yous",
+            "Corporate gifting, tiered by recipient",
+            "Reward program design &amp; fulfillment",
+            "Custom packaging and personalized notes",
         ],
     },
     "warehousing-and-custom-kitting": {
         "title": "Warehousing & Custom Kitting",
         "eyebrow": "Warehousing &amp; Custom Kitting",
-        "headline": "Your merch closet,<br/>run like a <em>warehouse</em>.",
-        "lede": "We hold the inventory, pick the kits, print the slips, ship the boxes &mdash; so you don&rsquo;t have to.",
-        "what": "Pallets come into our Outer Banks facility and leave as branded kits on your schedule. SKU-level visibility, on-demand reorders, real humans on the account.",
-        "how": "We set up the SKUs, photograph everything, put it behind a private portal or online store, and fulfill orders as they come in. You get reports, we get it out the door.",
+        "headline": "Pick, pack, ship,<br/><em>hold</em> &mdash; we&rsquo;ve got it.",
+        "lede": "We have the square footage and team to pick, pack, ship and hold all of your promotional products. Take advantage of bulk pricing without taking up valuable office space.",
+        "what": "Services range from basic mailers sent to target audiences to kitting multiple items to be packaged and shipped individually or in bulk. We focus on flexibility and work with you to develop a plan that meets your specific needs.",
+        "how": "Pallets come into our facility and leave as branded kits on your schedule. SKU-level visibility, on-demand reorders, real humans on the account.",
         "bullets": [
-            "SKU intake, photography, bin management",
-            "Custom kit assembly &mdash; welcome boxes, event kits, VIP sends",
-            "Print-on-demand collateral inserts",
-            "Private storefronts or API-fed order drops",
-            "Returns + restocking handled in-house",
+            "Pick, pack and ship from our warehouse",
+            "Product storage &mdash; bulk pricing without the office clutter",
+            "Basic mailers to target audiences",
+            "Custom multi-item kitting &mdash; individual or bulk",
+            "Flexible fulfillment plans built around your needs",
         ],
     },
     "online-stores": {
         "title": "Online Stores",
         "eyebrow": "Online Stores",
-        "headline": "A branded <em>store</em><br/>without the headaches.",
-        "lede": "Company stores, fundraiser shops, event merch sites &mdash; built, hosted and fulfilled end-to-end by us.",
-        "what": "We build and run private company stores and public-facing fundraiser / event sites. Orders come in, we pick / produce / ship, you get the reporting.",
-        "how": "Two flavors: <em>on-demand</em> (no inventory, produced per order) and <em>pre-buy</em> (we hold stock, ship same-day). We&rsquo;ll help you pick based on volume and SKU mix.",
+        "headline": "User-friendly<br/><em>branded stores</em>.",
+        "lede": "Online company stores are user-friendly and allow you to customize the shopping experience for both employees and customers.",
+        "what": "Easily set up and manage your promotional inventory. Employees and customers order online, we produce and ship. Perfect for uniform programs, loyalty programs and reward programs.",
+        "how": "We set up the store, photograph the SKUs, connect it to our fulfillment, and keep it running. On-demand or held-stock &mdash; whichever fits your volume.",
         "bullets": [
-            "Private employee stores with SSO / allowance codes",
-            "Public pop-up stores for events + fundraisers",
-            "On-demand or held-stock fulfillment",
-            "Integrated decoration &mdash; no external vendors",
-            "Clear reporting: orders, spend, top SKUs",
+            "Custom branded company store setup",
+            "User-friendly shopping for employees or customers",
+            "Easy inventory management",
+            "Uniform, loyalty and reward programs",
+            "Tied into our warehousing and kitting services",
         ],
     },
     "creative-services": {
         "title": "Creative Services",
         "eyebrow": "Creative Services",
-        "headline": "In-house <em>creative</em><br/>that understands production.",
-        "lede": "Logo work, brand systems, campaign art, packaging design &mdash; designed with the decoration method already in mind.",
-        "what": "Our designers don&rsquo;t hand off files that can&rsquo;t be printed. Every piece of creative we produce is ready for the press it&rsquo;s going to.",
-        "how": "Brief, moodboard, concepts, refinement, production-ready files. Simple, predictable, fast.",
+        "headline": "Design that gives<br/>your brand <em>polish</em>.",
+        "lede": "Our design team can craft designs or logos that capture your business&rsquo;s personality and aesthetic &mdash; starting from the ground up or giving an established brand a fresh look.",
+        "what": "Logos, graphic design and digitizing give promotional products polish. Whether you&rsquo;re rebranding or launching, we design logos and promotional items that fit the way your brand needs to show up.",
+        "how": "Brief, concepts, refinement, production-ready files. Every piece of creative we produce is ready for the press it&rsquo;s going to.",
         "bullets": [
-            "Logo design + brand identity systems",
-            "Merch line design and campaign art",
-            "Packaging + box art",
-            "Sales collateral and pitch decks",
-            "Production-ready files: Pantone-specced, press-ready",
+            "Logo design and brand identity",
+            "Graphic design for promotional items",
+            "Digitizing for embroidery",
+            "Virtual samples and vector art conversions",
+            "Rebranding and brand refresh",
         ],
+        "pricing_note": "Our hourly rate for graphic services starts at $50.00/hour for most jobs.",
     },
     "large-format-printing": {
         "title": "Large Format Printing",
         "eyebrow": "Large Format Printing",
-        "headline": "Big prints.<br/>Big <em>presence</em>.",
-        "lede": "Banners, signs, wall graphics, window clings, tradeshow displays &mdash; fast turns from our in-house presses.",
-        "what": "Indoor and outdoor large-format for events, retail, wayfinding and brand installations. UV-stable inks, rigid and flexible substrates.",
-        "how": "Send the art (or we&rsquo;ll design it). We proof, print, finish and ship &mdash; or deliver and install locally on the Outer Banks.",
+        "headline": "Signs, banners<br/>&amp; <em>posters</em>, big.",
+        "lede": "Custom signage, banners, posters and a variety of large format printing options &mdash; fast turns from our in-house team.",
+        "what": "Indoor and outdoor large-format for events, retail, wayfinding and brand installations. We print, finish and ship &mdash; or deliver locally on the Outer Banks.",
+        "how": "Send the art (or we&rsquo;ll design it). We proof, print, finish and deliver on the timeline you need.",
         "bullets": [
-            "Vinyl banners, mesh banners, pole banners",
-            "Rigid signs: coroplast, PVC, aluminum, Dibond",
-            "Wall and window graphics, floor decals",
-            "Tradeshow + retractable displays",
-            "48-hour rush on most pieces",
+            "Custom signage for retail, events and wayfinding",
+            "Vinyl, mesh and pole banners",
+            "Posters &mdash; indoor and outdoor rated",
+            "Large-scale backdrops",
+            "Tradeshow and event signage",
         ],
     },
     "print-collateral-and-packaging": {
         "title": "Print Collateral & Packaging",
         "eyebrow": "Print Collateral &amp; Packaging",
-        "headline": "Print with a <em>point of view</em>.",
-        "lede": "Brochures, business cards, lookbooks, branded boxes, hang-tags, stickers &mdash; offset and digital from a press-side team.",
-        "what": "Short-run and long-run print for every touchpoint that leaves your office. Specialty stocks, finishes, die-cuts and embellishments welcome.",
-        "how": "We&rsquo;ll help you spec stock, finish and bindery based on the job. Expect real press proofs on anything that matters.",
+        "headline": "If you can <em>dream it</em>,<br/>we can print it.",
+        "lede": "Printing and packaging materials that deliver marketing messages and brand directly to customers&rsquo; hands.",
+        "what": "Custom packaging showcases products in the best light and communicates product benefits to clients and end users. From business cards to branded shippers, we cover every print touchpoint.",
+        "how": "We&rsquo;ll help spec the stock, finish and bindery based on the job. Real press proofs on anything that matters.",
         "bullets": [
-            "Business cards, letterhead, envelopes",
-            "Brochures, lookbooks, sales sheets, postcards",
-            "Custom mailer and shipper boxes",
-            "Labels, stickers, hang-tags, belly bands",
-            "Foil, emboss, spot UV, die-cut, soft-touch",
+            "Postcards and direct mailers",
+            "Brochures and business cards",
+            "Custom packaging for your products",
+            "Package signage and large format pieces",
+            "Press-quality finishes &mdash; foil, emboss, die-cut",
+        ],
+    },
+    "awards-and-recognition": {
+        "title": "Awards & Recognition",
+        "eyebrow": "Awards &amp; Recognition",
+        "headline": "From <em>Grammy-esque</em><br/>to custom plaques.",
+        "lede": "From Grammy-esque trophies to unique plaques and certificates &mdash; with a range of materials, textures, designs, engraving options and price points.",
+        "what": "Recognition programs, milestone awards, sales incentives, service anniversaries, team shout-outs. We source the piece, handle the engraving, and deliver on-time for the moment it needs to land.",
+        "how": "Share the occasion, budget and volume. We come back with options across materials and tiers, then produce and ship.",
+        "bullets": [
+            "Custom trophies and awards",
+            "Plaques, certificates and recognition pieces",
+            "Engraving, etching and printed personalization",
+            "Material range: acrylic, wood, metal, glass, stone",
+            "Tiered programs for annual recognition",
+        ],
+    },
+    "tradeshow-displays": {
+        "title": "Tradeshow Displays",
+        "eyebrow": "Tradeshow Displays",
+        "headline": "Eye-catching booths,<br/>one-of-a-kind <em>presence</em>.",
+        "lede": "Large-scale backdrops or banners, standout signage, and tabletop displays &mdash; eye-catching, unique designs that represent your brand.",
+        "what": "Retractable banners, fabric backdrops, rigid signage, tablecloths, feather flags, hanging structures. Everything needed to own a 10x10 (or bigger) on the show floor.",
+        "how": "Tell us the space, the story and the lead time. We design, produce and ship &mdash; with carry cases and setup guidance.",
+        "bullets": [
+            "Large scale backdrops and banners",
+            "Retractable and pull-up banner stands",
+            "Tabletop displays and table throws",
+            "Standout signage and feather flags",
+            "Custom design tailored to your brand",
         ],
     },
 }
@@ -836,6 +918,9 @@ SERVICE_CONTENT = {
 def service_body(slug: str) -> str:
     d = SERVICE_CONTENT[slug]
     bullets = '\n'.join(f'            <li>{b}</li>' for b in d['bullets'])
+    pricing = ''
+    if d.get('pricing_note'):
+        pricing = f"<p style=\"margin-top:1rem;color:var(--text-dim);font-style:italic;\">{d['pricing_note']}</p>"
     return page_hero(d['eyebrow'], d['headline'], d['lede']) + dedent(f"""\
         <div class="container">
           <section class="about-grid">
@@ -852,6 +937,7 @@ def service_body(slug: str) -> str:
               <ul class="list">
     {bullets}
               </ul>
+              {pricing}
               <p style="margin-top:1.5rem;"><a class="btn btn--accent" href="/contact-us/#quote">Quote this service <span aria-hidden="true">&rarr;</span></a></p>
             </div>
           </section>
