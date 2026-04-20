@@ -30,9 +30,9 @@ from textwrap import dedent
 ROOT = Path(__file__).resolve().parent
 
 # Base URL path the site is served from.
-# GitHub Pages project site: "/Claude"
+# GitHub Pages project site: "/id-yourself"
 # Root domain (e.g. idyourself.com): ""
-BASE = "/Claude"
+BASE = "/id-yourself"
 
 def u(path: str) -> str:
     """Prefix a site-absolute path with BASE. Pass-through for external URLs and anchors."""
